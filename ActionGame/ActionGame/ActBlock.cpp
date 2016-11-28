@@ -20,8 +20,7 @@ void BlockSet( void )
 	{
 		for ( x = 0 ; x < 25 ; x++ )
 		{
-			if ( (map[y][x] != 0) && (map[y][x] != 8)	// 見てる MAP の座標に何か入っているとき
-					&& (map[y][x] != 9) )
+			if ( (map[y][x] != 0) && (map[y][x] != 8) )	// 見てる MAP の座標に何か入っているとき
 			{
 				blk[i].idno = ID_BLOCK ;				// その場所にブロックを入れる
 				blk[i].mode = 0 ;						// MODE を初期セットにする
@@ -32,7 +31,6 @@ void BlockSet( void )
 
 				i++ ;									// i をインクリメント	次のブロックを見るため
 			}
-
 		}
 	}
 

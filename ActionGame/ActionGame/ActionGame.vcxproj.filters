@@ -93,5 +93,11 @@
     <None Include="CG\Hole.bmp">
       <Filter>リソース ファイル</Filter>
     </None>
+    <None Include="CG\choco_x32.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="CG\ActionObjct.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -24,6 +24,7 @@
 #define O_PLY			10		// プレイヤー
 #define O_ENE			20		// エネミー
 #define O_HOLE			80		// 土管
+#define O_BOO			85		// 土管
 
 #define ID_BLOCK		1		// ブロックのID
 #define ID_TITLE		1		// タイトルのID
@@ -32,6 +33,7 @@
 #define ID_PLY			6		// プレイヤーのID
 #define ID_ENE			8		// エネミーのID
 #define ID_HOLE			10		// 土管のID
+#define ID_BOO			15		// 煙のID
 
 /* ____ 構造体宣言 ____ */
 typedef struct {

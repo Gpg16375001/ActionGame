@@ -41,8 +41,8 @@ int FootCheck( void )
 		 > 3つあたり判定をとる
 	*/
 	py = (int)pp->yp ;									// プレイヤーの中心点
-	pl = (int)pp->xp - 15.0 ;							// プレイヤーの左足
-	pr = (int)pp->xp + 15.0 ;							// プレイヤーの右足
+	pl = (int)(pp->xp - 15.0) ;							// プレイヤーの左足
+	pr = (int)(pp->xp + 15.0) ;							// プレイヤーの右足
 
 	/*
 		ブロックのあたり判定
@@ -51,10 +51,10 @@ int FootCheck( void )
 	{
 		if ( blk[i].idno == ID_BLOCK )					// 普通のブロックだったとき
 		{
-			bl = (int)blk[i].xp - 16.0 ;				// BLOCK の左側
-			br = (int)blk[i].xp + 16.0 ;				// BLOCK の右側
+			bl = (int)(blk[i].xp - 16.0) ;				// BLOCK の左側
+			br = (int)(blk[i].xp + 16.0) ;				// BLOCK の右側
 			bu = (int)blk[i].yp ;						// BLOCK の上側
-			bd = (int)blk[i].yp + 20 ;					// BLOCK の下側
+			bd = (int)(blk[i].yp + 20) ;				// BLOCK の下側
 
 			if ( (py >= bu) && (py <= bd) )				// 上下のあたり判定
 			{
@@ -104,7 +104,7 @@ int HeadCheck( void )
 		プレイヤーのあたり判定
 		 > 3つあたり判定をとる
 	*/
-	y = (int)pp->yp - 70 ;								// プレイヤーの中心点
+	y = (int)(pp->yp - 70) ;								// プレイヤーの中心点
 	x = (int)pp->xp ;									// プレイヤーの左足
 
 	/*
@@ -114,10 +114,10 @@ int HeadCheck( void )
 	{
 		if ( blk[i].idno == ID_BLOCK )					// 普通のブロックだったとき
 		{
-			bl = (int)blk[i].xp - 16.0 ;				// BLOCK の左側
-			br = (int)blk[i].xp + 16.0 ;				// BLOCK の右側
-			bu = (int)blk[i].yp + 16 ;					// BLOCK の上側
-			bd = (int)blk[i].yp + 32 ;					// BLOCK の下側
+			bl = (int)(blk[i].xp - 16.0) ;				// BLOCK の左側
+			br = (int)(blk[i].xp + 16.0) ;				// BLOCK の右側
+			bu = (int)(blk[i].yp + 16) ;					// BLOCK の上側
+			bd = (int)(blk[i].yp + 32) ;					// BLOCK の下側
 
 			if ( (y >= bu) && (y <= bd) )				// 上下のあたり判定
 			{

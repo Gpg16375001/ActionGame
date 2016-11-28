@@ -77,21 +77,24 @@ void GameIGame( void )
 	obj[O_PLY].idno = ID_PLY ;							// プレイヤーの呼び出し
 	obj[O_PLY].mode = 0 ;								// プレイヤーの初期セットの呼び出し
 
-	obj[O_HOLE+0].idno = ID_HOLE ;							// 背景の呼び出し
-	obj[O_HOLE+0].mode = 0 ;								// 背景の初期セットの呼び出し
+	obj[O_HOLE+0].idno = ID_HOLE ;						// 背景の呼び出し
+	obj[O_HOLE+0].mode = 0 ;							// 背景の初期セットの呼び出し
 	obj[O_HOLE+0].cnt = 0 ;								// 背景の初期セットの呼び出し
 
-	obj[O_HOLE+1].idno = ID_HOLE ;							// 背景の呼び出し
-	obj[O_HOLE+1].mode = 0 ;								// 背景の初期セットの呼び出し
+	obj[O_HOLE+1].idno = ID_HOLE ;						// 背景の呼び出し
+	obj[O_HOLE+1].mode = 0 ;							// 背景の初期セットの呼び出し
 	obj[O_HOLE+1].cnt = 1 ;								// 背景の初期セットの呼び出し
 
-	obj[O_HOLE+2].idno = ID_HOLE ;							// 背景の呼び出し
-	obj[O_HOLE+2].mode = 0 ;								// 背景の初期セットの呼び出し
+	obj[O_HOLE+2].idno = ID_HOLE ;						// 背景の呼び出し
+	obj[O_HOLE+2].mode = 0 ;							// 背景の初期セットの呼び出し
 	obj[O_HOLE+2].cnt = 2;								// 背景の初期セットの呼び出し
 
-	obj[O_HOLE+3].idno = ID_HOLE ;							// 背景の呼び出し
-	obj[O_HOLE+3].mode = 0 ;								// 背景の初期セットの呼び出し
+	obj[O_HOLE+3].idno = ID_HOLE ;						// 背景の呼び出し
+	obj[O_HOLE+3].mode = 0 ;							// 背景の初期セットの呼び出し
 	obj[O_HOLE+3].cnt = 3 ;								// 背景の初期セットの呼び出し
+
+	obj[O_BOO].idno = ID_BOO ;							// 背景の呼び出し
+	obj[O_BOO].mode = 0 ;								// 背景の初期セットの呼び出し
 
 	EnemySet( ) ;
 	BlockSet( ) ;										// ブロックの配置

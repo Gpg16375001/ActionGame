@@ -121,8 +121,8 @@ void AWalk( void )
 void AIJump( void )
 {
 	pp->yspd = -16.0 ;									// 上方向に初速を追加
-	pp->xboff = 640 ;									// ベースをジャンプの絵にする
-	pp->xmoff = 640 ;									// マスクをジャンプの絵にする
+	pp->xboff = 640 + 80 ;								// ベースをジャンプの絵にする
+	pp->xmoff = 640 + 80 ;								// マスクをジャンプの絵にする
 
 	pp->mode = 4 ;										// モードをジャンプ中へ
 
@@ -134,6 +134,8 @@ void AIJump( void )
 void AJump( void )
 {
 	double yp ;
+
+		ActWarp( ) ;
 
 	pp->yspd += 0.7 ;									// 重力
 	pp->yp += pp->yspd ;								// 縦方向に動く

@@ -4,7 +4,7 @@
 /*______________________________________________________________________________________________________________*/
 
 extern HDC			hDCBack;				// 裏画面のデバイスコンテキスト	
-extern HBITMAP		hBmpTbl[10];			// ビットマップロード用
+extern HBITMAP		hBmpTbl[20];			// ビットマップロード用
 extern HWND			hwnd ;					// ウインドウハンドル
 extern u_short		tmf ;					// １タイマー処理チェックフラグ
 extern DT			obj[MAXOBJ] ;			// 最大オブジェクト数

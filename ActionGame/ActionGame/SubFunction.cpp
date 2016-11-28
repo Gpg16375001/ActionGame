@@ -36,7 +36,7 @@ void ActWarp( void )
 	*/
 	for ( i = 0 ; i < 4 ; i++ )
 	{
-		if ( (py >= Holeup[i][0]) && (py <= Holeup[i][1]) )	// è„â∫ÇÃÇ†ÇΩÇËîªíË
+		if ( (py >= Holeup[i][0]) && (py <= Holeup[i][1]) && (pp->mode != 4) )	// è„â∫ÇÃÇ†ÇΩÇËîªíË
 		{
 			if ( (i == 0) || (i == 1) )
 			{
