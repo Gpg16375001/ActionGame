@@ -56,7 +56,7 @@ void AStop( void )
 		AStopW( 1 ) ;									// アニメーション停止関数へ
 	}
 
-	if ( GetKeyState(VK_SPACE) < 0 )					// SPACE KEY が押された時
+	if ( (GetKeyState(VK_SPACE) < 0) && (pp->pchg[4] != 1) )// SPACE KEY が押された時
 	{
 		pp->mode = 3 ;									// ジャンプのモードへ
 	}
@@ -90,7 +90,7 @@ void AWalk( void )
 		pp->xspd = PXSPD ;								// 右に進む
 	}
 
-	if ( GetKeyState(VK_SPACE) < 0 )					// SPACE KEY が押されたとき
+	if ( (GetKeyState(VK_SPACE) < 0) && (pp->pchg[4] != 1) )// SPACE KEY が押されたとき
 	{
 		pp->mode = 3 ;									// モードをジャンプへ
 	}
@@ -123,6 +123,10 @@ void AIJump( void )
 	pp->yspd = -16.0 ;									// 上方向に初速を追加
 	pp->xboff = 640 + 80 ;								// ベースをジャンプの絵にする
 	pp->xmoff = 640 + 80 ;								// マスクをジャンプの絵にする
+
+	obj[O_BOO].idno = ID_BOO ;
+	obj[O_BOO].xp = pp->xp ;
+	obj[O_BOO].yp = pp->yp - 50 ;
 
 	pp->mode = 4 ;										// モードをジャンプ中へ
 
@@ -273,7 +277,6 @@ void AIDown( void )
 }
 
 
-
 TBLJP ActPTbl[ ] =
 {
 	AInit ,												// 0  :	初期セット
@@ -297,6 +300,7 @@ void ActPlayer( void )
 {
 	ActPTbl[pp->mode]( ) ;								// プレイヤーのアクションのテーブルジャンプ
 
+	FootHitCheck( ) ;
 	if ( pp->lrflg == 0 )								// 左を向いて (入力) いるとき
 	{
 		pp->idx = 4 ;									// 左向きの画像に変える

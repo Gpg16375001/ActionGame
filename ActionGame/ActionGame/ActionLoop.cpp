@@ -28,7 +28,7 @@ TBLJP ActJpTbl[ ] = {
 	ActNull ,											//  11 : 
 	ActNull ,											//  12 : 
 	ActNull ,											//  13 : 
-	ActNull ,											//  14 : 
+	ActBoo ,											//  14 : ‰Œ‚ÌƒAƒNƒVƒ‡ƒ“
 	ActNull ,											//  15 : 
 } ;
 

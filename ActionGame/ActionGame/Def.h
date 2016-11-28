@@ -33,7 +33,7 @@
 #define ID_PLY			6		// プレイヤーのID
 #define ID_ENE			8		// エネミーのID
 #define ID_HOLE			10		// 土管のID
-#define ID_BOO			15		// 煙のID
+#define ID_BOO			14		// 煙のID
 
 /* ____ 構造体宣言 ____ */
 typedef struct {
@@ -96,5 +96,7 @@ void ActWarp( void ) ;
 void EnemySet( void ) ;
 void BBcheck( void ) ;
 void PAcheck( void ) ;
+void FootHitCheck( void ) ;
+void ActBoo( void ) ;
 
 

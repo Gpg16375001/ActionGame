@@ -79,6 +79,7 @@
     <ClCompile Include="ActBlock.cpp" />
     <ClCompile Include="ActEnemy.cpp" />
     <ClCompile Include="ActionLoop.cpp" />
+    <ClCompile Include="ActObjct.cpp" />
     <ClCompile Include="ActPlayer.cpp" />
     <ClCompile Include="ActTitle.cpp" />
     <ClCompile Include="DispLoop.cpp" />
