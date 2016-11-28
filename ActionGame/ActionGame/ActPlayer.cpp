@@ -120,14 +120,20 @@ void AWalk( void )
 /*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
 void AIJump( void )
 {
-	pp->yspd = -16.0 ;									// ã•ûŒü‚É‰‘¬‚ð’Ç‰Á
+	int no ;
+
+	pp->yspd = -23.0 ;									// ã•ûŒü‚É‰‘¬‚ð’Ç‰Á
 	pp->xboff = 640 + 80 ;								// ƒx[ƒX‚ðƒWƒƒƒ“ƒv‚ÌŠG‚É‚·‚é
 	pp->xmoff = 640 + 80 ;								// ƒ}ƒXƒN‚ðƒWƒƒƒ“ƒv‚ÌŠG‚É‚·‚é
 
-	obj[O_BOO].idno = ID_BOO ;
-	obj[O_BOO].xp = pp->xp ;
-	obj[O_BOO].yp = pp->yp - 50 ;
-
+	no = ObjSearch( O_BOO , MAXBOO ) ;
+	if ( no != -1 )										// ‹ó‚¢‚Ä‚¢‚½‚ç
+	{
+		obj[no].idno = ID_BOO ;
+		obj[no].mode = 0 ;
+		obj[no].xp = pp->xp ;
+		obj[no].yp = pp->yp - 75 ;
+	}
 	pp->mode = 4 ;										// ƒ‚[ƒh‚ðƒWƒƒƒ“ƒv’†‚Ö
 
 }
@@ -139,9 +145,9 @@ void AJump( void )
 {
 	double yp ;
 
-		ActWarp( ) ;
+	ActWarp( ) ;
 
-	pp->yspd += 0.7 ;									// d—Í
+	pp->yspd += 1.3 ;									// d—Í
 	pp->yp += pp->yspd ;								// c•ûŒü‚É“®‚­
 	if ( pp->yspd > 2.0 )								// —Ž‰º‘¬“x‚ª 2.0 ˆÈã‚ÌŽž
 	{

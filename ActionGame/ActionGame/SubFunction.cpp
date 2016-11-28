@@ -93,5 +93,24 @@ void ActHole( void )
 	}
 }
 
+/*______________________________________________________*/
+/*				  ‹ó‚«ƒIƒuƒWƒFƒNƒg ƒT[ƒ`				*/
+/*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
+int ObjSearch( int st , int tm )
+{
+	int no = -1 ;												// ‰ŠúƒZƒbƒg
+
+	for (  ; st < (st+tm) ; st++ )								// w’è’l‚Ü‚ÅƒJƒEƒ“ƒg
+	{
+		if ( obj[st].idno == 0 )								// •`‰æ‚³‚ê‚Ä‚È‚¢ idnum
+		{
+			no = st ;											// no ‚É ‚»‚Ì”z—ñ ‚ğ“ü‚ê‚é
+			return no ;											// no ‚ğ•Ô‚·
+		}
+	}
+
+	return no ;													// no ‚ğ•Ô‚·
+
+}
 
 

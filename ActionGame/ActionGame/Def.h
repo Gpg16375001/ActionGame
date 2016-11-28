@@ -4,7 +4,7 @@
 /*______________________________________________________________________________________________________________*/
 
 /* ____ DEFINE ____ */
-#define	MAXOBJ			100		// スプライトの数
+#define	MAXOBJ			150		// スプライトの数
 #define WINDOW_W		800		// ウィンドウの幅
 #define WINDOW_H		640		// ウィンドウの高さ
 #define FLIMIT			576.0	// 地面の位置
@@ -24,7 +24,9 @@
 #define O_PLY			10		// プレイヤー
 #define O_ENE			20		// エネミー
 #define O_HOLE			80		// 土管
-#define O_BOO			85		// 土管
+#define O_BOO			85		// 煙
+
+#define MAXBOO			10		// boo
 
 #define ID_BLOCK		1		// ブロックのID
 #define ID_TITLE		1		// タイトルのID
@@ -33,6 +35,7 @@
 #define ID_PLY			6		// プレイヤーのID
 #define ID_ENE			8		// エネミーのID
 #define ID_HOLE			10		// 土管のID
+#define ID_STEP			13		// 煙のID
 #define ID_BOO			14		// 煙のID
 
 /* ____ 構造体宣言 ____ */
@@ -98,5 +101,7 @@ void BBcheck( void ) ;
 void PAcheck( void ) ;
 void FootHitCheck( void ) ;
 void ActBoo( void ) ;
+int ObjSearch( int , int ) ;
+void ActStep( void ) ;
 
 

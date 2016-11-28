@@ -15,10 +15,27 @@ int FootCheck( void )
 {
 	int iRet = 0 ;										// 返り値
 	int i ;												// blk[] のカウント用
+	int no ;
 	int pl , py , pr ;									// PLAYER のあたり判定
 	int bl , br , bu , bd ;								// BLOCK のあたり判定
 
 	edflg = -1 ;
+
+
+	/*
+		着地
+	*/
+	if ( (pp->yspd > 0.0) && (pp->yp >= FLIMIT) )		// 上に動いているとき
+	{
+		no = ObjSearch( O_BOO , MAXBOO ) ;
+		if ( no != -1 )									// 空いていたら
+		{
+			obj[no].idno = ID_STEP ;
+			obj[no].mode = 0 ;
+			obj[no].xp = pp->xp ;
+			obj[no].yp = pp->yp - 82 ;
+		}
+	}
 
 	/*
 		ジャンプしてるとき
@@ -66,6 +83,21 @@ int FootCheck( void )
 					{
 						edflg = (int)blk[i].xp ;
 					}
+
+					/*
+						着地
+					*/
+					if ( pp->yspd > 0.0 )		// 上に動いているとき
+					{
+						no = ObjSearch( O_BOO , MAXBOO ) ;
+						if ( no != -1 )									// 空いていたら
+						{
+							obj[no].idno = ID_STEP ;
+							obj[no].mode = 0 ;
+							obj[no].xp = pp->xp ;
+							obj[no].yp = pp->yp - 82 ;
+						}
+					}
 				}
 				if ( (pr >= bl) && (pr <= br) )			// プレイヤーの左足とブロックのあたり判定
 				{
@@ -74,6 +106,21 @@ int FootCheck( void )
 					if ( blk[i].yspd < 0.0 )
 					{
 						edflg = (int)blk[i].xp ;
+					}
+
+					/*
+						着地
+					*/
+					if ( pp->yspd > 0.0 )		// 上に動いているとき
+					{
+						no = ObjSearch( O_BOO , MAXBOO ) ;
+						if ( no != -1 )									// 空いていたら
+						{
+							obj[no].idno = ID_STEP ;
+							obj[no].mode = 0 ;
+							obj[no].xp = pp->xp ;
+							obj[no].yp = pp->yp - 82 ;
+						}
 					}
 				}
 			}
@@ -284,14 +331,16 @@ void FootHitCheck( void )
 		土管のあたり判定
 		上下左右
 	*/
-	if ( (pl <= 96) && (py >= (96 - 100)) && (py <= 32) )
+	if ( (pl <= 96) && (py >= (96 - 100)) && (py <= 42) )
 	{
 		pp->yp = 96 - 100 ;
+		pp->mode = 2 ;
 	}
 
-	if ( (pr >= 704) && (py >= (96 - 100)) && (py <= 32) )
+	if ( (pr >= 704) && (py >= (96 - 100)) && (py <= 42) )
 	{
 		pp->yp = 96 - 100 ;
+		pp->mode = 2 ;
 	}
 
 	if ( (pl <= 128 - 8) && ((py - 70) >= (576 - 120)) && ((py - 70) <= (576 - 90)) )

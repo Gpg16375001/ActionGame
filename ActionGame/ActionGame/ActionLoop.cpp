@@ -27,7 +27,7 @@ TBLJP ActJpTbl[ ] = {
 	ActHole ,											//  10 : 土管のアクション
 	ActNull ,											//  11 : 
 	ActNull ,											//  12 : 
-	ActNull ,											//  13 : 
+	ActStep ,											//  13 : 着地のアクション
 	ActBoo ,											//  14 : 煙のアクション
 	ActNull ,											//  15 : 
 } ;
