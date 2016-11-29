@@ -161,13 +161,13 @@ void AJump( void )
 	pp->xspd = 0 ;										// Xspeed の初期化
 	if ( Body_Block( ) == 0)
 	{
-		if ( GetKeyState(VK_LEFT) < 0 )						// 左が押されたとき
+		if ( GetKeyState(VK_LEFT) < 0 )					// 左が押されたとき
 		{
-			pp->xspd = -PXSPD ;								// 左に進む
+			pp->xspd = -PXSPD ;							// 左に進む
 		}
-		if ( GetKeyState(VK_RIGHT) < 0 )					// 右が押されたとき
+		if ( GetKeyState(VK_RIGHT) < 0 )				// 右が押されたとき
 		{
-			pp->xspd = PXSPD ;								// 右に進む
+			pp->xspd = PXSPD ;							// 右に進む
 		}
 	}
 	pp->xp += pp->xspd ;								// 横方向に動く

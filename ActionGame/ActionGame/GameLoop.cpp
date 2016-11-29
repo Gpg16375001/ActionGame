@@ -99,6 +99,10 @@ void GameIGame( void )
 
 	obj[O_BOO].idno = ID_BOO ;							// 背景の呼び出し
 	obj[O_BOO].mode = 0 ;								// 背景の初期セットの呼び出し
+	obj[O_BOO].xp = -100 ;
+
+	obj[O_SNOW].idno = ID_SNOW ;						// 背景の呼び出し
+	obj[O_SNOW].mode = 0 ;								// 背景の初期セットの呼び出し
 
 	EnemySet( ) ;
 	BlockSet( ) ;										// ブロックの配置

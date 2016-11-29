@@ -4,7 +4,7 @@
 /*______________________________________________________________________________________________________________*/
 
 /* ____ DEFINE ____ */
-#define	MAXOBJ			150		// スプライトの数
+#define	MAXOBJ			300		// スプライトの数
 #define WINDOW_W		800		// ウィンドウの幅
 #define WINDOW_H		640		// ウィンドウの高さ
 #define FLIMIT			576.0	// 地面の位置
@@ -25,8 +25,10 @@
 #define O_ENE			20		// エネミー
 #define O_HOLE			80		// 土管
 #define O_BOO			90		// 煙
+#define O_SNOW			180		// 雪
 
 #define MAXBOO			10		// boo
+#define MAXSNOW			100		// 雪
 
 #define ID_BLOCK		1		// ブロックのID
 #define ID_TITLE		1		// タイトルのID
@@ -38,6 +40,7 @@
 #define ID_STEP			13		// 煙のID
 #define ID_BOO			14		// 煙のID
 #define ID_HOLE2		15		// 土管2のID
+#define ID_SNOW			15		// 雪のID
 
 /* ____ 構造体宣言 ____ */
 typedef struct {
@@ -106,5 +109,6 @@ int ObjSearch( int , int ) ;
 void ActStep( void ) ;
 int Body_Block( void ) ;
 void ActHole2( void ) ;
+void ActSnow( void ) ;
 
 

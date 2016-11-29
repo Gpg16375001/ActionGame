@@ -61,19 +61,20 @@ void ActWarp( void )
 /*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
 int ObjSearch( int st , int tm )
 {
-	int no = -1 ;										// ‰ŠúƒZƒbƒg
+	int i ;
+	int no = -1 ;
 
-	for (  ; st < (st+tm) ; st++ )						// w’è’l‚Ü‚ÅƒJƒEƒ“ƒg
+	for ( i = st ; i < (st + tm) ; i++ )
 	{
-		if ( obj[st].idno == 0 )						// •`‰æ‚³‚ê‚Ä‚È‚¢ idno
+		// ‚à‚µƒIƒuƒWƒFƒNƒg‚Ì‚h‚cƒiƒ“ƒo[‚Ì’†‚ª‹ó‚¾‚Á‚½‚ç
+		if ( obj[i].idno == 0 )
 		{
-			no = st ;									// no ‚É ‚»‚Ì”z—ñ ‚ğ“ü‚ê‚é
-			break ;										// ”²‚¯‚é
+			no = i ;
+			break ;
 		}
 	}
 
-	return no ;											// no ‚ğ•Ô‚·
-
+	return no ;
 }
 
 

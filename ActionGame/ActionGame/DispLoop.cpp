@@ -28,20 +28,9 @@ void DispLoop( void )
 			x = (int)obj[i].xp + obj[i].xoff ;
 			y = (int)obj[i].yp + obj[i].yoff ;
 
-			if ( obj[i].idx != 10 )
-			{
-				SelectObject ( hDCWork , hBmpTbl[obj[i].idx] ) ;
-				BitBlt ( hDCBack, x , y , obj[i].xsize , obj[i].ysize , hDCWork, obj[i].xmoff, obj[i].ymoff, SRCAND ) ;
-				BitBlt ( hDCBack, x , y , obj[i].xsize, obj[i].ysize , hDCWork, obj[i].xboff, obj[i].yboff, SRCPAINT ) ;
-			}
-			else
-			{
-				SelectObject ( hDCWork , hBmpTbl[obj[i].idx] ) ;
-				StretchBlt( hDCBack, x , y , obj[i].xsize , obj[i].ysize ,
-					hDCWork , obj[i].xmoff , obj[i].ymoff , obj[i].xsize , obj[i].ysize , SRCAND ) ;
-				StretchBlt( hDCBack, x , y , obj[i].xsize , obj[i].ysize ,
-					hDCWork , obj[i].xboff, obj[i].yboff , obj[i].xsize , obj[i].ysize , SRCPAINT ) ;
-			}
+			SelectObject ( hDCWork , hBmpTbl[obj[i].idx] ) ;
+			BitBlt ( hDCBack, x , y , obj[i].xsize , obj[i].ysize , hDCWork, obj[i].xmoff, obj[i].ymoff, SRCAND ) ;
+			BitBlt ( hDCBack, x , y , obj[i].xsize, obj[i].ysize , hDCWork, obj[i].xboff, obj[i].yboff, SRCPAINT ) ;
 		}
 	}
 

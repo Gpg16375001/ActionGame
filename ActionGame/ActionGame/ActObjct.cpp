@@ -16,7 +16,7 @@ void ActBoo( void )
 	switch ( pp->mode )
 	{
 		case 0 :
-			pp->dspf = 0 ;
+			pp->dspf = 0 ;								// 0 : ”ñ•\Ž¦
 			pp->xsize = 80 ;							// ‚wƒTƒCƒY
 			pp->ysize = 80 ;							// ‚xƒTƒCƒY
 			pp->xboff = 0 ;								// ‚wƒIƒtƒZƒbƒg
@@ -133,16 +133,12 @@ void ActHole( void )
 /*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
 void ActHole2( void )
 {
-	double xm , ym ;
-
 	switch ( pp->mode )
 	{
 		case 0 :
-			pp->dspf = 1 ;								// ‚OF”ñ•\Ž¦	1F•\Ž¦
+			pp->dspf = 0 ;								// ‚OF”ñ•\Ž¦	1F•\Ž¦
 			pp->xsize = 100 ;							// ‚wƒTƒCƒY
 			pp->ysize = 150 ;							// ‚xƒTƒCƒY
-			xdk = 100 ;
-			ydk = 150 ;
 			pp->yboff = 0 ;								// ‚xƒIƒtƒZƒbƒg
 			pp->ymoff = 0 ;								// ‚xƒ}ƒXƒN
 			pp->xoff = -50 ;							// ‚wƒ}ƒXƒN
@@ -158,14 +154,72 @@ void ActHole2( void )
 			break ;
 
 		case 1 :
-			pp->cnt -= 10 ;
-			xm = pp->xp ;
-			ym = pp->yp ;
-			xdk[0] = cos( 3.14 / 180 * pp->cnt ) * 40.0 ;		// *”¼Œa
-			ydk[0] = sin( 3.14 / 180 * pp->cnt ) * 40.0 ;
+			break ;
 
-			xdk[] += xm ;
-			ydk += ym ;
+	}
+}
+
+
+/*______________________________________________________*/
+/*						á‚ð~‚ç‚·						*/
+/*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
+void ActSnow( void )
+{
+	int no ;
+
+	switch ( pp->mode )
+	{
+		case 0 :
+			pp->dspf = 1 ;								// ‚OF”ñ•\Ž¦	1F•\Ž¦
+			pp->yp = 0 ;
+			pp->xsize = 16 ;							// ‚wƒTƒCƒY
+			pp->ysize = 16 ;							// ‚xƒTƒCƒY
+			pp->yboff = 16 * 4 ;						// ‚xƒIƒtƒZƒbƒg
+			pp->ymoff = 0 ;								// ‚xƒ}ƒXƒN
+			pp->xoff = -8 ;								// ‚wƒ}ƒXƒN
+			pp->yoff = -8 ;								// ‚xƒ}ƒXƒN
+			pp->yspd = 8 ;
+			pp->idx = 11 ;								// ‰æ‘œ”Ô†
+			pp->mode = 1 ;								// ƒAƒNƒVƒ‡ƒ“ŠÇ—”Ô†
+
+			pp->xboff = 0 ;								// ‚wƒIƒtƒZƒbƒg
+			pp->xmoff = 16 * 4 ;						// ‚wƒ}ƒXƒN
+			pp->cnt = 0 ;
+			break ;
+
+		case 1 :
+			pp->xp += pp->xspd ;
+			pp->yp += pp->yspd ;
+			if ( (rand( ) % 50) == 0 )
+			{
+				pp->mode = 2 ;
+				if ( rand( ) & 1 )
+				{
+					pp->xspd = 0.4 ;
+				}
+				else
+				{
+					pp->xspd = -0.4 ;
+				}
+			}
+
+			if ( pp->yp > FLIMIT )
+			{
+				pp->mode = 0 ;
+				pp->idno = 0 ;
+			}
+			break ;
+
+		case 2 :
+			no = ObjSearch( O_SNOW , MAXSNOW ) ;
+			if ( no != -1 )								// ‹ó‚¢‚Ä‚¢‚½‚ç
+			{
+				obj[no].idno = ID_SNOW ;
+				obj[no].mode = 0 ;
+				obj[no].xp = (rand( ) % 800) + 0 ;
+				obj[no].timer = 100 ;
+			}
+			pp->mode = 1 ;
 			break ;
 
 	}

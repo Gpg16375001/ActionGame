@@ -96,6 +96,7 @@ LRESULT CALLBACK WndProc ( HWND hWnd ,
 			hBmpTbl[8] = LoadBitmap( hInst , MAKEINTRESOURCE(IDB_HOLE) ) ;		// 土管
 			hBmpTbl[9] = LoadBitmap( hInst , MAKEINTRESOURCE(IDB_OBJ) ) ;		// OBJ
 			hBmpTbl[10] = LoadBitmap( hInst , MAKEINTRESOURCE(IDB_HOLE2) ) ;	// 土管2
+			hBmpTbl[11] = LoadBitmap( hInst , MAKEINTRESOURCE(IDB_SHOTS) ) ;	// 弾のイラスト
 
 			hDC = GetDC ( hWnd ) ;
 			hDCBack = CreateCompatibleDC ( hDC ) ;
@@ -147,6 +148,7 @@ LRESULT CALLBACK WndProc ( HWND hWnd ,
 			DeleteObject( hBmpTbl[8] ) ;
 			DeleteObject( hBmpTbl[9] ) ;
 			DeleteObject( hBmpTbl[10] ) ;
+			DeleteObject( hBmpTbl[11] ) ;
 
 			KillTimer( hWnd, 1 ) ;			//タイマの削除
 			PostQuitMessage ( 0 ) ;
