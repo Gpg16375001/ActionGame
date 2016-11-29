@@ -28,9 +28,20 @@ void DispLoop( void )
 			x = (int)obj[i].xp + obj[i].xoff ;
 			y = (int)obj[i].yp + obj[i].yoff ;
 
-			SelectObject ( hDCWork , hBmpTbl[obj[i].idx] ) ;
-			BitBlt ( hDCBack, x , y , obj[i].xsize , obj[i].ysize , hDCWork, obj[i].xmoff, obj[i].ymoff, SRCAND ) ;
-			BitBlt ( hDCBack, x , y , obj[i].xsize, obj[i].ysize , hDCWork, obj[i].xboff, obj[i].yboff, SRCPAINT ) ;
+			if ( obj[i].idx != 10 )
+			{
+				SelectObject ( hDCWork , hBmpTbl[obj[i].idx] ) ;
+				BitBlt ( hDCBack, x , y , obj[i].xsize , obj[i].ysize , hDCWork, obj[i].xmoff, obj[i].ymoff, SRCAND ) ;
+				BitBlt ( hDCBack, x , y , obj[i].xsize, obj[i].ysize , hDCWork, obj[i].xboff, obj[i].yboff, SRCPAINT ) ;
+			}
+			else
+			{
+				SelectObject ( hDCWork , hBmpTbl[obj[i].idx] ) ;
+				StretchBlt( hDCBack, xdk , ydk , obj[i].xsize , obj[i].ysize ,
+					hDCWork , obj[i].xmoff , obj[i].ymoff , obj[i].xsize , obj[i].ysize , SRCAND ) ;
+				StretchBlt( hDCBack, xdk , ydk , obj[i].xsize , obj[i].ysize ,
+					hDCWork , obj[i].xboff, obj[i].yboff , obj[i].xsize , obj[i].ysize , SRCPAINT ) ;
+			}
 		}
 	}
 
@@ -42,9 +53,16 @@ void DispLoop( void )
 		if ( (blk[i].idno != 0) && (blk[i].mode != 0) && (blk[i].dspf != 0) )
 		{
 			SelectObject ( hDCWork , hBmpTbl[3] ) ;
-			BitBlt ( hDCBack, (int)blk[i].xp - 16 ,(int)blk[i].yp , 32 , 32 ,  hDCWork , 0 , 128 , SRCAND ) ;
+			if ( blk[i].bno != 6 )
+			{
+				BitBlt ( hDCBack, (int)blk[i].xp - 16 ,(int)blk[i].yp , 32 , 32 ,  hDCWork , 0 , 128 , SRCAND ) ;
+			}
+			else
+			{
+				BitBlt ( hDCBack, (int)blk[i].xp - 16 ,(int)blk[i].yp , 32 , 32 ,  hDCWork , 0 , 160 , SRCAND ) ;
+			}
 			BitBlt ( hDCBack, (int)blk[i].xp - 16 , (int)blk[i].yp , 32 , 32 ,
-				hDCWork , blk[i].xboff , blk[i].yboff , SRCPAINT ) ;
+			hDCWork , blk[i].xboff , blk[i].yboff , SRCPAINT ) ;
 		}
 	}
 

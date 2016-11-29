@@ -105,6 +105,7 @@
     <None Include="CG\EnemyL.bmp" />
     <None Include="CG\EnemyR.bmp" />
     <None Include="CG\Hole.bmp" />
+    <None Include="CG\Hole2.bmp" />
     <None Include="CG\PlayerL.bmp" />
     <None Include="CG\PlayerR.bmp" />
     <None Include="CG\start.bmp" />

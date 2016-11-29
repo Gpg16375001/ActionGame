@@ -85,12 +85,12 @@ int FootCheck( void )
 					}
 
 					/*
-						着地
+						着地 煙アクション
 					*/
-					if ( pp->yspd > 0.0 )		// 上に動いているとき
+					if ( pp->yspd > 0.0 )				// 上に動いているとき
 					{
 						no = ObjSearch( O_BOO , MAXBOO ) ;
-						if ( no != -1 )									// 空いていたら
+						if ( no != -1 )					// 空いていたら
 						{
 							obj[no].idno = ID_STEP ;
 							obj[no].mode = 0 ;
@@ -130,7 +130,6 @@ int FootCheck( void )
 	return iRet ;										// 返り値で返す
 }
 
-
 /*______________________________________________________*/
 /*				  頭上チェック あたり判定				*/
 /*			  0 : 		その他 : 		*/
@@ -139,7 +138,7 @@ int HeadCheck( void )
 {
 	int iRet = 0 ;
 	int i ;
-	int x , y ;											// 頭上のあたり判定
+	int pl , py , pr ;									// 頭上のあたり判定
 	int bl , br , bu , bd ;								// BLOCK の判定用
 
 	if ( pp->yspd > 0.0 )								// 落下中の時
@@ -151,8 +150,9 @@ int HeadCheck( void )
 		プレイヤーのあたり判定
 		 > 3つあたり判定をとる
 	*/
-	y = (int)(pp->yp - 70) ;								// プレイヤーの中心点
-	x = (int)pp->xp ;									// プレイヤーの左足
+	py = (int)(pp->yp - 70) ;							// プレイヤーの中心点	頭
+	pl = (int)(pp->xp - 15.0) ;							// プレイヤーの左		頭
+	pr = (int)(pp->xp + 15.0) ;							// プレイヤーの右		頭
 
 	/*
 		ブロックのあたり判定
@@ -163,12 +163,22 @@ int HeadCheck( void )
 		{
 			bl = (int)(blk[i].xp - 16.0) ;				// BLOCK の左側
 			br = (int)(blk[i].xp + 16.0) ;				// BLOCK の右側
-			bu = (int)(blk[i].yp + 16) ;					// BLOCK の上側
-			bd = (int)(blk[i].yp + 32) ;					// BLOCK の下側
+			bu = (int)(blk[i].yp + 16) ;				// BLOCK の上側
+			bd = (int)(blk[i].yp + 32) ;				// BLOCK の下側
 
-			if ( (y >= bu) && (y <= bd) )				// 上下のあたり判定
+			if ( (py >= bu) && (py <= bd) )				// 上下のあたり判定
 			{
-				if ( (x >= bl) && (x <= br) )			// プレイヤーの右側とブロックのあたり判定
+				if ( (pl >= bl) && (pl <= br) )			// プレイヤーの右足とブロックのあたり判定
+				{
+					iRet = -1 ;							// 当たった BLOCK の座標を渡す
+
+					if ( blk[i].mode == 1 )				// 当たった BLOCK が動いてない時
+					{
+						blk[i].mode = 2 ;				// 当たった BLOCK のモードを変える
+					}
+					break ;								// 何度も当たらないので抜ける
+				}
+				if ( (pr >= bl) && (pr <= br) )			// プレイヤーの左足とブロックのあたり判定
 				{
 					iRet = -1 ;							// 当たった BLOCK の座標を渡す
 
@@ -211,6 +221,79 @@ void BBcheck( void )
 		obj[O_PLY].mode = 9 ;
 	}
 
+}
+
+/*______________________________________________________*/
+/*				  体とブロックのあたり判定				*/
+/*			  0 : 		その他 : 		*/
+/*￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣*/
+int Body_Block( void )
+{
+	int iRet = 0 ;										// 返り値
+	int y ;
+	int i ;												// blk[] のカウント用
+	int no ;
+	int bl , br , bu , bd ;								// BLOCK のあたり判定
+	int pl , py , pr ;									// PLAYER のあたり判定
+	int plc[2][4][3] = {								// PLAYER のあたり判定
+		// 0 : 左向きの時
+		{
+//			{ left , right , ypos },
+			{ 16 , 28 , 60 },
+			{ 19 , 32 , 43 },
+			{ 23 , 21 , 26 },
+			{  4 , 20 , 12 },
+		} ,
+
+		// 1 : 右向きの時
+		{
+//			{ left , right , ypos },
+			{ 28 , 16 , 60 },
+			{ 32 , 19 , 43 },
+			{ 21 , 23 , 26 },
+			{ 20 ,  4 , 12 },
+		} ,
+	} ;
+
+	for ( y = 0 ; y < 4 ; y++ )
+	{
+		/*
+			プレイヤーのあたり判定
+			 > 3x4つあたり判定をとる
+		*/
+		pl = (int)(pp->xp - plc[pp->lrflg][y][1]) ;
+		pr = (int)(pp->xp + plc[pp->lrflg][y][2]) ;
+		py = (int)(pp->yp - plc[pp->lrflg][y][3]) ;			// プレイヤーの中心点
+
+		/*
+			ブロックのあたり判定
+		*/
+		for ( i = 0 ; i < MAXBLK ; i++ )					// BLOCK を全部見る
+		{
+			if ( blk[i].idno == ID_BLOCK )					// 普通のブロックだったとき
+			{
+			
+				bl = (int)(blk[i].xp - 16) ;				// BLOCK の左側
+				br = (int)(blk[i].xp + 16 );				// BLOCK の右側
+				bu = (int)blk[i].yp ;						// BLOCK の上側
+				bd = (int)(blk[i].yp + 32) ;				// BLOCK の下側
+
+				if ( (py >= bu) && (py <= bd) )				// 上下のあたり判定
+				{
+					if ( (pl >= bl) && (pl <= br) )			// プレイヤーの右とブロックのあたり判定
+					{
+						iRet = (int)blk[i].xp ;				// 当たった BLOCK の座標を渡す
+					}
+					if ( (pr >= bl) && (pr <= br) )			// プレイヤーの左とブロックのあたり判定
+					{
+						iRet = (int)blk[i].xp ;				// 当たった BLOCK の座標を渡す
+					}
+				}
+			}
+		}
+	}
+
+	return iRet ;											// 返り値で返す
 }
 
 /*______________________________________________________*/

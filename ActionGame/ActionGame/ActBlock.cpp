@@ -68,7 +68,7 @@ void ActBlock( void )
 			if ( bp->yp >= bp->ys )						// BLOCK が元の位置に戻った時
 			{
 				bp->yspd = 0 ;
-				bp->yp = bp->ys ;						// BLOCK が元の位置に戻す ( ずれる可能性があるため )
+				bp->yp = bp->ys ;						// BLOCK を元の位置に戻す ( ずれる可能性があるため )
 				bp->mode = 0 ;							// mode を通常状態に戻す
 				bp->pchg[0] = 0 ;						// カウントを0に戻す
 			}

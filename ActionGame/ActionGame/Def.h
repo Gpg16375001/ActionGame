@@ -24,7 +24,7 @@
 #define O_PLY			10		// プレイヤー
 #define O_ENE			20		// エネミー
 #define O_HOLE			80		// 土管
-#define O_BOO			85		// 煙
+#define O_BOO			90		// 煙
 
 #define MAXBOO			10		// boo
 
@@ -37,6 +37,7 @@
 #define ID_HOLE			10		// 土管のID
 #define ID_STEP			13		// 煙のID
 #define ID_BOO			14		// 煙のID
+#define ID_HOLE2		15		// 土管2のID
 
 /* ____ 構造体宣言 ____ */
 typedef struct {
@@ -103,5 +104,7 @@ void FootHitCheck( void ) ;
 void ActBoo( void ) ;
 int ObjSearch( int , int ) ;
 void ActStep( void ) ;
+int Body_Block( void ) ;
+void ActHole2( void ) ;
 
 

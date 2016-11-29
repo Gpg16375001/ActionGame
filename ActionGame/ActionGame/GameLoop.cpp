@@ -23,7 +23,7 @@ void GameAInit( void )
 	gmode = GM_I_TITLE ;								// タイトルの初期セットへ移動する
 
 	/* >> デバッグ << */
-	gmode = GM_I_GAME ;
+//	gmode = GM_I_GAME ;
 
 }
 
@@ -92,6 +92,10 @@ void GameIGame( void )
 	obj[O_HOLE+3].idno = ID_HOLE ;						// 背景の呼び出し
 	obj[O_HOLE+3].mode = 0 ;							// 背景の初期セットの呼び出し
 	obj[O_HOLE+3].cnt = 3 ;								// 背景の初期セットの呼び出し
+
+	obj[O_HOLE+4].idno = ID_HOLE2 ;						// 背景の呼び出し
+	obj[O_HOLE+4].mode = 0 ;							// 背景の初期セットの呼び出し
+	obj[O_HOLE+4].cnt = 4 ;								// 背景の初期セットの呼び出し
 
 	obj[O_BOO].idno = ID_BOO ;							// 背景の呼び出し
 	obj[O_BOO].mode = 0 ;								// 背景の初期セットの呼び出し
