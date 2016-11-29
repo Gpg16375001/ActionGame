@@ -54,7 +54,6 @@ void ActBoo( void )
 	}
 }
 
-
 /*______________________________________________________*/
 /*						’…’n‚ÌƒAƒNƒVƒ‡ƒ“				*/
 /*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
@@ -224,5 +223,126 @@ void ActSnow( void )
 
 	}
 }
+
+/*______________________________________________________*/
+/*							 ”wŒi						*/
+/*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
+void ActBg( void )
+{
+	int i ;
+
+	switch ( pp->mode )
+	{
+		case 0 :
+			pp->dspf = 1 ;								// ‚OF”ñ•\¦	1F•\¦
+			pp->xp = 0 ;								// ƒXƒNƒŠ[ƒ“‚wÀ•W
+			pp->yp = -1280 ;							// ƒXƒNƒŠ[ƒ“‚xÀ•W
+			pp->xsize = WINDOW_W ;						// ‚wƒTƒCƒY
+			pp->ysize = WINDOW_H * 3 ;					// ‚xƒTƒCƒY
+			pp->xboff = 0 ;								// ‚wƒIƒtƒZƒbƒg
+			pp->yboff = 0 ;								// ‚xƒIƒtƒZƒbƒg
+			pp->xmoff = 0 ;								// ‚wƒ}ƒXƒN
+			pp->ymoff = 0 ;								// ‚xƒ}ƒXƒN
+			pp->idx = 2 ;								// ‰æ‘œ”Ô†
+
+			pp->mode = 1 ;								// ƒAƒNƒVƒ‡ƒ“ŠÇ—”Ô†
+			break ;
+
+		case 1 :
+/*
+			if ( (obj[O_PLY].yp <= 200) && (obj[O_PLY].yspd < 0) )
+			{
+				for ( i = 0 ; i < MAXOBJ ; i++ )
+				{
+					if ( (obj[i].idno != 0) && (obj[i].mode != 0) && (obj[i].dspf != 0) )
+					{
+						obj[i].yp -= obj[O_PLY].yspd ;
+					}
+				}
+
+				for ( i = 0 ; i < MAXBLK ; i++ )
+				{
+					if ( (blk[i].idno != 0) && (blk[i].mode != 0) && (blk[i].dspf != 0) )
+					{
+						blk[i].yp -= obj[O_PLY].yspd ;
+					}
+				}
+				sflg = 1 ;
+			}
+
+			if ( (obj[O_PLY].yp >= WINDOW_H - 200) && (obj[O_PLY].yspd > 0) && (sflg == 1) )
+			{
+				for ( i = 0 ; i < MAXOBJ ; i++ )
+				{
+					if ( (obj[i].idno != 0) && (obj[i].mode != 0) && (obj[i].dspf != 0) )
+					{
+						obj[i].yp -= obj[O_PLY].yspd ;
+					}
+				}
+
+				for ( i = 0 ; i < MAXBLK ; i++ )
+				{
+					if ( (blk[i].idno != 0) && (blk[i].mode != 0) && (blk[i].dspf != 0) )
+					{
+						blk[i].yp -= obj[O_PLY].yspd ;
+					}
+				}
+				if ( obj[O_BG].yp <= -1280 )
+				{
+					sflg = 0 ;
+				}
+			}
+*/
+			break ;
+
+	}
+
+}
+
+/*______________________________________________________*/
+/*					  ”š”­ ƒAƒNƒVƒ‡ƒ“					*/
+/*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
+void ActBomb( void )
+{
+	switch ( pp->mode )
+	{
+		case 0 :
+			/*
+				”š”­ ‰ŠúƒZƒbƒg
+			*/
+			pp->dspf = 1 ;
+			pp->xsize = 80 ;
+			pp->ysize = 80 ;
+			pp->xboff = 0 ;
+			pp->yboff = 0 ;
+			pp->xmoff = 0 ;
+			pp->ymoff = 80 ;
+			pp->idx = 12 ;
+			pp->xoff = -40 ;										// ’†S“_‚Ì•ÏX X²
+			pp->yoff = -40 ;										// ’†S“_‚Ì•ÏX Y²
+
+			pp->mode = 1 ;
+
+			pp->pchg[0] = 0 ;
+//			mciSendString( TEXT("play SE_BOMB1 from 0 notify") , NULL , 0 , hwnd ) ;// bomb
+			break ;
+
+		case 1 :
+			pp->pchg[0]++ ;
+			if ( pp->pchg[0] < 12 )
+			{
+				pp->xboff = pp->pchg[0] * 80 ;
+				pp->xmoff = pp->pchg[0] * 80 ;
+			}
+			else
+			{
+				pp->idno = 0 ;
+				pp->mode = 0 ;
+			}
+			break ;
+	}
+
+}
+
 
 

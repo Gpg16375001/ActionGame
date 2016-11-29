@@ -56,7 +56,8 @@ void AStop( void )
 		AStopW( 1 ) ;									// アニメーション停止関数へ
 	}
 
-	if ( (GetKeyState(VK_SPACE) < 0) && (pp->pchg[4] != 1) )// SPACE KEY が押された時
+	if ( (GetKeyState(VK_SPACE) < 0) && (pp->pchg[4] != 1)
+		|| (GetKeyState(VK_F2) < 0) && (pp->pchg[4] != 1) )// SPACE KEY が押された時
 	{
 		pp->mode = 3 ;									// ジャンプのモードへ
 	}
@@ -90,7 +91,8 @@ void AWalk( void )
 		pp->xspd = PXSPD ;								// 右に進む
 	}
 
-	if ( (GetKeyState(VK_SPACE) < 0) && (pp->pchg[4] != 1) )// SPACE KEY が押されたとき
+	if ( (GetKeyState(VK_SPACE) < 0) && (pp->pchg[4] != 1)
+		|| (GetKeyState(VK_F2) < 0) && (pp->pchg[4] != 1) )// SPACE KEY が押されたとき
 	{
 		pp->mode = 3 ;									// モードをジャンプへ
 	}

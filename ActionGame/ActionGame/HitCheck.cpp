@@ -111,10 +111,10 @@ int FootCheck( void )
 					/*
 						’…’n
 					*/
-					if ( pp->yspd > 0.0 )		// ã‚É“®‚¢‚Ä‚¢‚é‚Æ‚«
+					if ( pp->yspd > 0.0 )				// ã‚É“®‚¢‚Ä‚¢‚é‚Æ‚«
 					{
 						no = ObjSearch( O_BOO , MAXBOO ) ;
-						if ( no != -1 )									// ‹ó‚¢‚Ä‚¢‚½‚ç
+						if ( no != -1 )					// ‹ó‚¢‚Ä‚¢‚½‚ç
 						{
 							obj[no].idno = ID_STEP ;
 							obj[no].mode = 0 ;

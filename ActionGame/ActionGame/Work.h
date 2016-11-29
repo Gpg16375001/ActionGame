@@ -15,6 +15,7 @@ extern BT			*bp ;					// ブロック用のポインタ変数
 
 extern int			gmode ;					// ゲーム管理モード
 extern int			edflg ;
+extern int			sflg ;
 
 extern unsigned char map[18][25] ;
 

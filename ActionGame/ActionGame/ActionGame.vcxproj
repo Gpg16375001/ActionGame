@@ -104,8 +104,10 @@
     <None Include="CG\choco_x32.bmp" />
     <None Include="CG\EnemyL.bmp" />
     <None Include="CG\EnemyR.bmp" />
+    <None Include="CG\Exp.bmp" />
     <None Include="CG\Hole.bmp" />
     <None Include="CG\Hole2.bmp" />
+    <None Include="CG\number_felt.bmp" />
     <None Include="CG\PlayerL.bmp" />
     <None Include="CG\PlayerR.bmp" />
     <None Include="CG\Shot2.bmp" />

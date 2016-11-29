@@ -46,17 +46,23 @@ void AeStop( void )
 {
 	ActWarp( ) ;
 
+	/*
+		エネミー思考プログラム
+	*/
 	if ( pp->xp > obj[O_PLY].xp )
 	{
 		AeStopW( 0 ) ;									// アニメーション停止関数へ
-		pp->xspd = -EXSPD ;
+		pp->xspd = -EXSPD ;								// 左
 	}
 	else
 	{
 		AeStopW( 1 ) ;									// アニメーション停止関数へ
-		pp->xspd = EXSPD ;
+		pp->xspd = EXSPD ;								// 右
 	}
 
+	/*
+		足元のチェック
+	*/
 	if ( (FootCheck( ) == 0) && (pp->pchg[4] != 1) )	// 足元のチェック 何もなかった時
 	{
 		pp->mode = 11 ;									// 落下中のモードへ
@@ -88,9 +94,17 @@ void AeWalk( void )
 //	BBcheck( ) ;
 	ActWarp( ) ;
 
-	if ( (rand( ) % 50) == 1 )
+	/*
+		エネミー思考プログラム
+	*/
+	if ( (rand( ) % 80) == 1 )
 	{
 		pp->mode = 1 ;
+	}
+	if ( ((rand( ) % 30) == 1) && (pp->xp > 320) && (pp->xp < 384) && (pp->lrflg == 0)
+		|| ((rand( ) % 30) == 1) && (pp->xp > 416) && (pp->xp < 480) && (pp->lrflg == 1) )
+	{
+		pp->mode = 3 ;
 	}
 
 	// 横移動
@@ -121,7 +135,7 @@ void AeWalk( void )
 		歩いているとき
 	*/
 	pp->pchg[0]-- ;										// タイマーをカウントダウン
-	if ( (pp->pchg[0] <= 0) )			// タイマーのカウントが 0以下になったら
+	if ( (pp->pchg[0] <= 0) )							// タイマーのカウントが 0以下になったら
 	{
 		pp->pchg[0] = 2 ;								// アニメーションのタイマーセット
 		pp->pchg[1]++ ;									// 次のイラストに移る
@@ -140,7 +154,7 @@ void AeWalk( void )
 /*￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣*/
 void AeIJump( void )
 {
-	pp->yspd = -14.0 ;									// 上方向に初速を追加
+	pp->yspd = -15.0 ;									// 上方向に初速を追加
 	pp->xboff = 640 ;									// ベースをジャンプの絵にする
 	pp->xmoff = 640 ;									// マスクをジャンプの絵にする
 
@@ -303,11 +317,21 @@ void AeDamege( void )
 /*￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣*/
 void AeIOut( void )
 {
+	int no ;
+
 	pp->dspf = 1 ;
 	pp->yspd = -10.0 ;									// Yspeed を初期化する
 	pp->xboff = 80 * 11 ;								// ベースを落下中の絵にする
 	pp->xmoff = 80 * 11 ;								// マスクを落下中の絵にする
 
+	no = ObjSearch( O_BOMB , MAXBOM ) ;
+	if ( no != -1 )										// 空いていたら
+	{
+		obj[no].idno = ID_BOMB ;
+		obj[no].mode = 0 ;
+		obj[no].xp = pp->xp ;
+		obj[no].yp = pp->yp - 40 ;
+	}
 	pp->mode = 10 ;										// モードをジャンプ中へ
 
 }
@@ -320,6 +344,10 @@ void AeOut( void )
 	pp->yspd += 1.0 ;
 	pp->yp += pp->yspd ;
 
+	if ( pp->yp >= 700 )
+	{
+		pp->idno = 0 ;
+	}
 }
 
 /*______________________________________________________*/
@@ -379,22 +407,20 @@ void ActEnemy( void )
 void EnemySet( void )
 {
 	int y , x ;
-	int i ;
+	int no ;
 
-	i = 0 ;												// i の初期セット
 	for ( y = 0 ; y < 18 ; y++ )
 	{
 		for ( x = 0 ; x < 25 ; x++ )
 		{
+			no = ObjSearch( O_ENE , MAXENE ) ;
 			if ( map[y][x] == 8 )						// 見てる MAP の座標に何か入っているとき
 			{
-				obj[O_ENE+i].idno = ID_ENE ;			// その場所にエネミーを入れる
-				obj[O_ENE+i].mode = 0 ;					// MODE を初期セットにする
-
-				obj[O_ENE+i].xp = x * 32 ;				// X 座標を合わせる
-				obj[O_ENE+i].yp = y * 32 + 32 ;			// Y 座標を合わせる
-
-				i++ ;									// i をインクリメント	次のエネミーを見るため
+				obj[no].idno = ID_ENE ;					// その場所にエネミーを入れる
+				obj[no].mode = 0 ;						// MODE を初期セットにする
+					
+				obj[no].xp = x * 32 ;					// X 座標を合わせる
+				obj[no].yp = y * 32 + 32 ;				// Y 座標を合わせる
 			}
 		}
 	}

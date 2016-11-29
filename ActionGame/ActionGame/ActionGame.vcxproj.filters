@@ -108,5 +108,11 @@
     <None Include="CG\Shot2.bmp">
       <Filter>リソース ファイル</Filter>
     </None>
+    <None Include="CG\Exp.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
+    <None Include="CG\number_felt.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
   </ItemGroup>
 </Project>

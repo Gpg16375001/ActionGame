@@ -79,7 +79,7 @@ LRESULT CALLBACK WndProc ( HWND hWnd ,
 	HBITMAP				hBitmap ;
 	PAINTSTRUCT			ps ;
 	HDC					hDC ;
-	TCHAR				s[50] ;
+//	TCHAR				s[50] ;
 
 	switch ( message )
 	{
@@ -97,6 +97,8 @@ LRESULT CALLBACK WndProc ( HWND hWnd ,
 			hBmpTbl[9] = LoadBitmap( hInst , MAKEINTRESOURCE(IDB_OBJ) ) ;		// OBJ
 			hBmpTbl[10] = LoadBitmap( hInst , MAKEINTRESOURCE(IDB_HOLE2) ) ;	// 土管2
 			hBmpTbl[11] = LoadBitmap( hInst , MAKEINTRESOURCE(IDB_SHOTS) ) ;	// 弾のイラスト
+			hBmpTbl[12] = LoadBitmap( hInst , MAKEINTRESOURCE(IDB_EXP) ) ;		// 爆発のイラスト
+			hBmpTbl[13] = LoadBitmap( hInst , MAKEINTRESOURCE(IDB_FELT) ) ;		// 数字のイラスト
 
 			hDC = GetDC ( hWnd ) ;
 			hDCBack = CreateCompatibleDC ( hDC ) ;
@@ -124,12 +126,12 @@ LRESULT CALLBACK WndProc ( HWND hWnd ,
 		case WM_PAINT :
 			hDC = BeginPaint ( hWnd , &ps ) ;
 			BitBlt ( hDC , 0 , 0 , WINDOW_W , WINDOW_H , hDCBack , 0 , 0 , SRCCOPY ) ;
-
+/*
 			wsprintf( s , TEXT("gmode = %04d") , gmode ) ;
 			TextOut( hDC , 0 , 0 , s , lstrlen(s) ) ;
 			wsprintf( s , TEXT("gmode = %04d") , obj[O_PLY].pchg[4] ) ;
 			TextOut( hDC , 0 , 20 , s , lstrlen(s) ) ;
-
+*/
 			tmf = 0;
 			EndPaint ( hWnd , &ps ) ;
 			break ;
@@ -149,6 +151,8 @@ LRESULT CALLBACK WndProc ( HWND hWnd ,
 			DeleteObject( hBmpTbl[9] ) ;
 			DeleteObject( hBmpTbl[10] ) ;
 			DeleteObject( hBmpTbl[11] ) ;
+			DeleteObject( hBmpTbl[12] ) ;
+			DeleteObject( hBmpTbl[13] ) ;
 
 			KillTimer( hWnd, 1 ) ;			//タイマの削除
 			PostQuitMessage ( 0 ) ;

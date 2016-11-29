@@ -71,6 +71,8 @@ void GameETitle( void )
 /*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
 void GameIGame( void )
 {
+	int i ;
+
 	obj[O_BG].idno = ID_BG ;							// ”wŒi‚ÌŒÄ‚Ño‚µ
 	obj[O_BG].mode = 0 ;								// ”wŒi‚Ì‰ŠúƒZƒbƒg‚ÌŒÄ‚Ño‚µ
 
@@ -115,6 +117,14 @@ void GameIGame( void )
 /*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
 void GameMGame( void )
 {
+	static int times = 20 ;
+
+	if ( times < 0 )
+	{
+		EnemySet( ) ;
+		times = 20 ;
+	}
+	times-- ;
 
 }
 

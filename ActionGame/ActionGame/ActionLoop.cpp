@@ -30,7 +30,7 @@ TBLJP ActJpTbl[ ] = {
 	ActStep ,											//  13 : 着地のアクション
 	ActBoo ,											//  14 : 煙のアクション
 	ActSnow ,											//  15 : 雪のアクション
-	ActNull ,											//  16 : 
+	ActBomb ,											//  16 : 爆発のアクション
 	ActNull ,											//  17 : 
 } ;
 

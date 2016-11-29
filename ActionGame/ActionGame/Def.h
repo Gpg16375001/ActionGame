@@ -26,9 +26,12 @@
 #define O_HOLE			80		// 土管
 #define O_BOO			90		// 煙
 #define O_SNOW			180		// 雪
+#define O_BOMB			280		// 爆発
 
 #define MAXBOO			10		// boo
+#define MAXBOM			10		// 爆発
 #define MAXSNOW			100		// 雪
+#define MAXENE			5		// エネミーの最大数
 
 #define ID_BLOCK		1		// ブロックのID
 #define ID_TITLE		1		// タイトルのID
@@ -41,6 +44,7 @@
 #define ID_BOO			14		// 煙のID
 #define ID_HOLE2		15		// 土管2のID
 #define ID_SNOW			15		// 雪のID
+#define ID_BOMB			16		// 爆発のID
 
 /* ____ 構造体宣言 ____ */
 typedef struct {
@@ -64,6 +68,7 @@ typedef struct {
 	BOOL lrflg ;
 	int cnt ;
 	int timer ;
+	double ysave ;
 } DT ;
 
 typedef struct {
@@ -79,6 +84,7 @@ typedef struct {
 	double yspd ;				// Y speed
 	int bno ;					// ブロックのナンバー
 	double ys ;					// 自分の位置を覚えとく用
+	double ysave ;
 } BT ;
 
 /* ____ テーブルジャンプ ____ */
@@ -110,5 +116,6 @@ void ActStep( void ) ;
 int Body_Block( void ) ;
 void ActHole2( void ) ;
 void ActSnow( void ) ;
+void ActBomb( void ) ;
 
 
