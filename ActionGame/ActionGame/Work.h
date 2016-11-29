@@ -15,7 +15,7 @@ extern BT			*bp ;					// ブロック用のポインタ変数
 
 extern int			gmode ;					// ゲーム管理モード
 extern int			edflg ;
-extern double		xdk , ydk ;					// 土管向き
+extern double		xdk[4] , ydk[4] ;					// 土管向き
 
 extern unsigned char map[18][25] ;
 

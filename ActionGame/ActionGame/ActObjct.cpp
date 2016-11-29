@@ -161,10 +161,10 @@ void ActHole2( void )
 			pp->cnt -= 10 ;
 			xm = pp->xp ;
 			ym = pp->yp ;
-			xdk = cos( 3.14 / 180 * pp->cnt ) * 40.0 ;		// *”¼Œa
-			ydk = sin( 3.14 / 180 * pp->cnt ) * 40.0 ;
+			xdk[0] = cos( 3.14 / 180 * pp->cnt ) * 40.0 ;		// *”¼Œa
+			ydk[0] = sin( 3.14 / 180 * pp->cnt ) * 40.0 ;
 
-			xdk += xm ;
+			xdk[] += xm ;
 			ydk += ym ;
 			break ;
 

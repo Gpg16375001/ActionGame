@@ -37,9 +37,9 @@ void DispLoop( void )
 			else
 			{
 				SelectObject ( hDCWork , hBmpTbl[obj[i].idx] ) ;
-				StretchBlt( hDCBack, xdk , ydk , obj[i].xsize , obj[i].ysize ,
+				StretchBlt( hDCBack, x , y , obj[i].xsize , obj[i].ysize ,
 					hDCWork , obj[i].xmoff , obj[i].ymoff , obj[i].xsize , obj[i].ysize , SRCAND ) ;
-				StretchBlt( hDCBack, xdk , ydk , obj[i].xsize , obj[i].ysize ,
+				StretchBlt( hDCBack, x , y , obj[i].xsize , obj[i].ysize ,
 					hDCWork , obj[i].xboff, obj[i].yboff , obj[i].xsize , obj[i].ysize , SRCPAINT ) ;
 			}
 		}
