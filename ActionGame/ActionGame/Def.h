@@ -4,7 +4,7 @@
 /*______________________________________________________________________________________________________________*/
 
 /* ____ DEFINE ____ */
-#define	MAXOBJ			300		// スプライトの数
+#define	MAXOBJ			350		// スプライトの数
 #define WINDOW_W		800		// ウィンドウの幅
 #define WINDOW_H		640		// ウィンドウの高さ
 #define FLIMIT			576.0	// 地面の位置
@@ -27,6 +27,7 @@
 #define O_BOO			90		// 煙
 #define O_SNOW			180		// 雪
 #define O_BOMB			280		// 爆発
+#define O_SHOT			300		// 攻撃
 
 #define MAXBOO			10		// boo
 #define MAXBOM			10		// 爆発
@@ -45,6 +46,8 @@
 #define ID_HOLE2		15		// 土管2のID
 #define ID_SNOW			15		// 雪のID
 #define ID_BOMB			16		// 爆発のID
+#define ID_SBOM			17		// 爆発のID
+#define ID_SHOT			12		// 攻撃のID
 
 /* ____ 構造体宣言 ____ */
 typedef struct {
@@ -117,5 +120,7 @@ int Body_Block( void ) ;
 void ActHole2( void ) ;
 void ActSnow( void ) ;
 void ActBomb( void ) ;
+void ActAttack( void ) ;
+void ActSBom( void ) ;
 
 

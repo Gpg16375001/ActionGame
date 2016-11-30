@@ -114,5 +114,8 @@
     <None Include="CG\number_felt.bmp">
       <Filter>リソース ファイル</Filter>
     </None>
+    <None Include="CG\sExp.bmp">
+      <Filter>リソース ファイル</Filter>
+    </None>
   </ItemGroup>
 </Project>

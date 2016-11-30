@@ -26,12 +26,12 @@ TBLJP ActJpTbl[ ] = {
 	ActNull ,											//  09 : 
 	ActHole ,											//  10 : 土管のアクション
 	ActNull ,											//  11 : 
-	ActNull ,											//  12 : 
+	ActAttack ,											//  12 : 攻撃時
 	ActStep ,											//  13 : 着地のアクション
 	ActBoo ,											//  14 : 煙のアクション
 	ActSnow ,											//  15 : 雪のアクション
 	ActBomb ,											//  16 : 爆発のアクション
-	ActNull ,											//  17 : 
+	ActSBom ,											//  17 : 
 } ;
 
 /*______________________________________________________*/

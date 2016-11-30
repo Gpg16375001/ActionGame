@@ -110,6 +110,7 @@
     <None Include="CG\number_felt.bmp" />
     <None Include="CG\PlayerL.bmp" />
     <None Include="CG\PlayerR.bmp" />
+    <None Include="CG\sExp.bmp" />
     <None Include="CG\Shot2.bmp" />
     <None Include="CG\start.bmp" />
     <None Include="CG\Title.bmp" />

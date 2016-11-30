@@ -309,11 +309,11 @@ void PAcheck( void )
 	py = (int)pp->yp - 30 ;
 	if ( pp->lrflg == 0 )
 	{
-		px = (int)pp->xp - 50 ;
+		px = (int)pp->xp ;
 	}
 	else
 	{
-		px = (int)pp->xp + 50 ;
+		px = (int)pp->xp ;
 	}
 
 	for ( i = 0 ; i < 10 ; i++ )
@@ -324,7 +324,6 @@ void PAcheck( void )
 			er = (int)obj[O_ENE+i].xp + 20 ;
 			eu = (int)obj[O_ENE+i].yp - 40 ;
 			ed = (int)obj[O_ENE+i].yp ;
-
 
 			if ( (px > el) && (px < er) && (py > eu) && (py < ed) )
 			{

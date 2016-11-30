@@ -204,11 +204,29 @@ void AJump( void )
 /*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
 void AIAttack( void )
 {
+	int no ;
+
 	pp->yspd = -16.0 ;									// ã•ûŒü‚É‰‘¬‚ð’Ç‰Á
 	pp->xsize = 96 ;
 	pp->xboff = 960 ;									// ƒx[ƒX‚ðƒWƒƒƒ“ƒv‚ÌŠG‚É‚·‚é
 	pp->xmoff = 960 ;									// ƒ}ƒXƒN‚ðƒWƒƒƒ“ƒv‚ÌŠG‚É‚·‚é
 
+	no = ObjSearch( O_SHOT , 10 ) ;
+	if ( no != -1 )										// ‹ó‚¢‚Ä‚¢‚½‚ç
+	{
+		obj[no].idno = ID_SHOT ;
+		obj[no].mode = 0 ;
+		obj[no].xp = pp->xp ;
+		obj[no].yp = pp->yp - 40 ;
+		if ( pp->lrflg )
+		{
+			obj[no].xspd = 10.0 ;
+		}
+		else
+		{
+			obj[no].xspd = -10.0 ;
+		}
+	}
 	pp->mode = 6 ;										// ƒ‚[ƒh‚ðUŒ‚’†‚Ö
 	pp->pchg[0] = 20 ;
 

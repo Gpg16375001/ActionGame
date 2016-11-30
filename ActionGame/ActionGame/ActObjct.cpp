@@ -158,7 +158,6 @@ void ActHole2( void )
 	}
 }
 
-
 /*______________________________________________________*/
 /*						á‚ð~‚ç‚·						*/
 /*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
@@ -340,6 +339,140 @@ void ActBomb( void )
 				pp->mode = 0 ;
 			}
 			break ;
+	}
+
+}
+
+/*______________________________________________________*/
+/*					  ”š”­ ƒAƒNƒVƒ‡ƒ“					*/
+/*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
+void ActSBom( void )
+{
+	switch ( pp->mode )
+	{
+		case 0 :
+			/*
+				”š”­ ‰ŠúƒZƒbƒg
+			*/
+			pp->dspf = 1 ;
+			pp->xsize = 32 ;
+			pp->ysize = 32 ;
+			pp->xboff = 0 ;
+			pp->yboff = 0 ;
+			pp->xmoff = 0 ;
+			pp->ymoff = 32 ;
+			pp->idx = 13 ;
+			pp->xoff = -16 ;										// ’†S“_‚Ì•ÏX XŽ²
+			pp->yoff = -16 ;										// ’†S“_‚Ì•ÏX YŽ²
+
+			pp->mode = 1 ;
+
+			pp->pchg[0] = 0 ;
+//			mciSendString( TEXT("play SE_BOMB1 from 0 notify") , NULL , 0 , hwnd ) ;// bomb
+			break ;
+
+		case 1 :
+			pp->pchg[0]++ ;
+			if ( pp->pchg[0] < 12 )
+			{
+				pp->xboff = pp->pchg[0] * 32 ;
+				pp->xmoff = pp->pchg[0] * 32 ;
+			}
+			else
+			{
+				pp->idno = 0 ;
+				pp->mode = 0 ;
+			}
+			break ;
+	}
+
+}
+
+/*______________________________________________________*/
+/*							UŒ‚						*/
+/*PPPPPPPPPPPPPPPPPPPPPPPPPPP*/
+void ActAttack( void )
+{
+	int no ;
+	int i ;
+	int px , py ;
+	int el , er , eu , ed ;
+
+	switch ( pp->mode )
+	{
+		case 0 :
+			pp->dspf = 1 ;								// ‚OF”ñ•\Ž¦	1F•\Ž¦
+			pp->xsize = 16 ;							// ‚wƒTƒCƒY
+			pp->ysize = 16 ;							// ‚xƒTƒCƒY
+			pp->yboff = 16 * 6 ;						// ‚xƒIƒtƒZƒbƒg
+			pp->ymoff = 16 * 6 ;						// ‚xƒ}ƒXƒN
+			pp->xoff = -8 ;								// ‚wƒ}ƒXƒN
+			pp->yoff = -8 ;								// ‚xƒ}ƒXƒN
+			pp->yspd = 8 ;
+			pp->idx = 11 ;								// ‰æ‘œ”Ô†
+			pp->mode = 1 ;								// ƒAƒNƒVƒ‡ƒ“ŠÇ—”Ô†
+
+			pp->xboff = 0 ;								// ‚wƒIƒtƒZƒbƒg
+			pp->xmoff = 16 * 4 ;						// ‚wƒ}ƒXƒN
+			pp->cnt = 0 ;
+			break ;
+
+		case 1 :
+			pp->xp += pp->xspd ;
+
+			if ( (pp->xp < 0) || (pp->xp > WINDOW_W) )
+			{
+				pp->idno = 0 ;
+			}
+
+			py = (int)pp->yp ;
+			px = (int)pp->xp ;
+			for ( i = 0 ; i < MAXENE ; i++ )
+			{
+				if ( obj[O_ENE+i].idno != 0 )
+				{
+					el = (int)obj[O_ENE+i].xp - 20 ;
+					er = (int)obj[O_ENE+i].xp + 20 ;
+					eu = (int)obj[O_ENE+i].yp - 50 ;
+					ed = (int)obj[O_ENE+i].yp ;
+
+					if ( (px > el) && (px < er) && (py > eu) && (py < ed) )
+					{
+						if ( obj[O_ENE+i].mode == 8 )
+						{
+							obj[O_ENE+i].mode = 9 ;
+							pp->idno = 0 ;
+
+							no = ObjSearch( O_BOMB , MAXBOM ) ;
+							if ( no != -1 )										// ‹ó‚¢‚Ä‚¢‚½‚ç
+							{
+								obj[no].idno = ID_SBOM ;
+								obj[no].mode = 0 ;
+								obj[no].xp = pp->xp ;
+								obj[no].yp = pp->yp ;
+							}
+						}
+
+						if ( obj[O_ENE+i].mode == 2 )
+						{
+							obj[O_ENE+i].mode = 12 ;
+							pp->idno = 0 ;
+
+							no = ObjSearch( O_BOMB , MAXBOM ) ;
+							if ( no != -1 )										// ‹ó‚¢‚Ä‚¢‚½‚ç
+							{
+								obj[no].idno = ID_SBOM ;
+								obj[no].mode = 0 ;
+								obj[no].xp = pp->xp ;
+								obj[no].yp = pp->yp ;
+							}
+						}
+
+					}
+				}
+			}
+			break ;
+
 	}
 
 }

@@ -26,6 +26,7 @@ void AeInit( void )
 	pp->xoff = -40 ;									// Ｘ中心点
 	pp->yoff = -76 ;									// Ｙ中心点
 	pp->idx = 6 ;										// 画像番号
+	pp->timer = 0 ;
 
 	pp->mode = 1 ;										// アクション管理番号
 
@@ -49,7 +50,15 @@ void AeStop( void )
 	/*
 		エネミー思考プログラム
 	*/
-	if ( pp->xp > obj[O_PLY].xp )
+	if ( ((rand( ) % 80) == 1) || (pp->timer != 0) )
+	{
+		pp->timer++ ;
+		if ( pp->timer > 80 )
+		{
+			pp->timer = 0 ;
+		}
+	}
+	else if ( pp->xp > obj[O_PLY].xp )
 	{
 		AeStopW( 0 ) ;									// アニメーション停止関数へ
 		pp->xspd = -EXSPD ;								// 左

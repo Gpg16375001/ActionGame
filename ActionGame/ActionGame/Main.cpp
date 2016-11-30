@@ -98,7 +98,7 @@ LRESULT CALLBACK WndProc ( HWND hWnd ,
 			hBmpTbl[10] = LoadBitmap( hInst , MAKEINTRESOURCE(IDB_HOLE2) ) ;	// 土管2
 			hBmpTbl[11] = LoadBitmap( hInst , MAKEINTRESOURCE(IDB_SHOTS) ) ;	// 弾のイラスト
 			hBmpTbl[12] = LoadBitmap( hInst , MAKEINTRESOURCE(IDB_EXP) ) ;		// 爆発のイラスト
-			hBmpTbl[13] = LoadBitmap( hInst , MAKEINTRESOURCE(IDB_FELT) ) ;		// 数字のイラスト
+			hBmpTbl[13] = LoadBitmap( hInst , MAKEINTRESOURCE(IDB_SEXP) ) ;		// 爆発のイラスト
 
 			hDC = GetDC ( hWnd ) ;
 			hDCBack = CreateCompatibleDC ( hDC ) ;
